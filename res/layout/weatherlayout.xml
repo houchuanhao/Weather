@@ -1,0 +1,164 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/iphoneWeatherBackground"
+    android:gravity="top"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="50dp"
+    tools:context=".MainActivity" >
+
+    <TextView
+        android:id="@+id/cityName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="沈阳市"
+        android:textColor="@drawable/white"
+        android:textColorHint="@drawable/white"
+        android:textSize="@dimen/cityTextSize"
+        android:textStyle="normal" />
+        <TextView
+        android:id="@+id/currentWeather"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="晴间多云"
+        android:textColor="@drawable/white"
+        android:textColorHint="@drawable/white"
+        android:textSize="20dp"
+        android:textStyle="normal" />
+        <TextView
+        android:id="@+id/currentTemperature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="32°"
+        android:textColor="@drawable/white"
+        android:textColorHint="@drawable/white"
+        android:textSize="80dp"
+        android:textStyle="normal" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="36dp" >
+
+                    <TextView
+                        android:id="@+id/today"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginLeft="39dp"
+                        android:layout_toRightOf="@+id/weekday"
+                        android:text="今天"
+                        android:textColor="@drawable/white"
+                        android:textSize="18dp" />
+
+                    <TextView
+                        android:id="@+id/weekday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentLeft="true"
+                        android:text="星期五"
+                        android:textColor="@drawable/white"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/todayMax"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="22dp"
+                        android:text="32"
+                        android:textColor="@drawable/white"
+                        android:textSize="18dp" />
+
+                    <TextView
+                        android:id="@+id/todayMin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginRight="18dp"
+                        android:layout_toLeftOf="@+id/todayMax"
+                        android:text="22"
+                        android:textColor="@drawable/white"
+                        android:textSize="18dp" />
+
+                </RelativeLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:background="@drawable/white" />
+
+    <HorizontalScrollView
+        android:id="@+id/hsv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" 
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <GridView
+                android:id="@+id/gv24"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+            </GridView>
+
+        </LinearLayout>
+    </HorizontalScrollView>
+    
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/white" />
+
+	
+
+	            <ScrollView
+	                android:id="@+id/scrollView1"
+	                android:layout_width="match_parent"
+	                android:layout_height="match_parent" >
+
+	                <LinearLayout
+	                    android:layout_width="match_parent"
+	                    android:layout_height="match_parent"
+	                    android:orientation="vertical" >
+	                        <com.example.weather.MyDefind.MyGridView
+						        android:id="@+id/gv7"
+						        android:layout_width="match_parent"
+						        android:layout_height="match_parent"
+						        android:numColumns="1" >
+						    </com.example.weather.MyDefind.MyGridView>
+						    	
+	                           <View
+						        android:layout_width="fill_parent"
+						        android:layout_height="1dp"
+						        android:layout_marginLeft="5dp"
+						        android:layout_marginRight="5dp"
+						        android:background="@drawable/white" />
+	                           <TextView
+				                android:id="@+id/weatherText"
+				                android:layout_width="wrap_content"
+				                android:layout_height="10000dp"
+				                android:text="今天:今日有雷暴。当前气温23°；最高气温26°" />
+	                </LinearLayout>
+	            </ScrollView>
+
+	            
+
+</LinearLayout>
