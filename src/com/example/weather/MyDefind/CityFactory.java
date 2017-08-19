@@ -1,15 +1,31 @@
 package com.example.weather.MyDefind;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class CityFactory {
+	public static List<CityDate> getCityList(){
+		List cityList=new ArrayList();
+		for(int i=0;i<=10;i++){
+			cityList.add(getCity(""));
+		}
+		return cityList;
+	}
+//	public static List  getCityMapList(){
+//		List cityMapList=new ArrayList();
+//		for(int i=0;i<=10;i++){
+//			Map cityMap=new cityMap
+//		}
+//	}
+	
 	public  static CityDate getCity(String response){
 		List weekState7;
 		List timeState24;
 		CityDate city=new CityDate();
+		city.setUpdatTime(new Date());
 		city.setCity(1);
 		city.setCityName("ÉòÑô");
 		city.setCurrentTemperature(30);

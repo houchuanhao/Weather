@@ -1,18 +1,22 @@
 package com.example.weather.MyDefind;
 
+import java.util.Date;
 import java.util.List;
 
 public class CityDate {
 	private
+
 	int City;
 	String CityName;
 	int currentTemperature;
+	Date updatTime; //更新时间
 	String currentWeather;//当前天气
 	int todayMin;//今日最低温
 	int todayMax;//今日最高温
 	List timeState24;//24小时天气
 	List weekState7;//一周天气
 	List otherAttribute;//其他属性，比如日出，日落。。
+	
 	public int getCity() {
 		return City;
 	}
@@ -30,6 +34,13 @@ public class CityDate {
 	}
 	public void setCurrentTemperature(int currentTemperature) {
 		this.currentTemperature = currentTemperature;
+	}
+	
+	public Date getUpdatTime() {
+		return updatTime;
+	}
+	public void setUpdatTime(Date updatTime) {
+		this.updatTime = updatTime;
 	}
 	public String getCurrentWeather() {
 		return currentWeather;

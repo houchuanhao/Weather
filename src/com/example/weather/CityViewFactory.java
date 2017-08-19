@@ -139,10 +139,11 @@ public class CityViewFactory {
 	        public View getView(int position, View convertView, ViewGroup parent) {
 	            LayoutInflater layoutInflater = LayoutInflater.from(context);
 	            convertView = layoutInflater.inflate(R.layout.midlist, null);
+	            Map ts =(Map) list.get(position);
 	            TextView time = (TextView) convertView.findViewById(R.id.time);
 	            TextView weather = (TextView) convertView.findViewById(R.id.weather);
 	            TextView temperature = (TextView) convertView.findViewById(R.id.temperature);
-	            Map ts =(Map) list.get(position);
+	           
 	            time.setText(ts.get("time")+"Ê±");
 	            weather.setText(ts.get("weather").toString());
 	            temperature.setText(ts.get("temperature")+"¡ã");

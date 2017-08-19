@@ -29,6 +29,7 @@ import com.example.weather.MyDefind.CityFactory;
 import com.example.weather.MyDefind.MyGridView;
 
 public class MainActivity extends Activity {
+	private GridView gv;
 	private View view1, view2, view3;
 	private List<View> viewList;// view数组
 	private ViewPager viewPager; // 对应的viewPager
@@ -36,6 +37,12 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		gv=(GridView)findViewById(R.id.cityList);
+		List cityList=CityFactory.getCityList();
+		
+		
+		
+		
 		CityDate city=CityFactory.getCity("hello");
 		viewPager = (ViewPager) findViewById(R.id.viewpager);
 		view1 = new CityViewFactory(city, this).getView();

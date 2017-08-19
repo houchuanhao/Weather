@@ -1,20 +1,53 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    tools:context="com.example.testviewpage_1.MainActivity" >
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/viewpager"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+	<RelativeLayout 
+		    android:layout_width="fill_parent"
+		    android:layout_height="fill_parent"
+		    tools:context="com.example.testviewpage_1.MainActivity" >
+		
+		    <android.support.v4.view.ViewPager
+		        android:id="@+id/viewpager"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content" />
+		
+		    <Button
+		        android:id="@+id/button1"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_alignParentBottom="true"
+		        android:layout_centerHorizontal="true"
+		        android:text="Button" />
+		</RelativeLayout>
+		
+		<LinearLayout
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:orientation="vertical" >
+		    
+				<ScrollView
+				        android:id="@+id/scrollView1"
+				        android:layout_width="wrap_content"
+				        android:layout_height="wrap_content" >
+		
+				        <LinearLayout
+					            android:layout_width="match_parent"
+					            android:layout_height="match_parent"
+					            android:orientation="vertical" >
 
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:text="Button" />
-
-</RelativeLayout>
+						<GridView
+					        android:id="@+id/cityList"
+					        android:layout_width="match_parent"
+					        android:layout_height="wrap_content"
+					        android:numColumns="1" >
+					    </GridView>
+				            
+				            	
+				        </LinearLayout>
+				    </ScrollView>
+	   </LinearLayout>
+		
+</FrameLayout>

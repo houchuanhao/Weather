@@ -12,6 +12,8 @@
     android:paddingTop="50dp"
     tools:context=".MainActivity" >
 
+
+
     <TextView
         android:id="@+id/cityName"
         android:layout_width="wrap_content"
