@@ -8,6 +8,7 @@ import java.util.Map;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.DisplayMetrics;
@@ -39,26 +40,6 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		gv=(GridView)findViewById(R.id.cityList);
-		List cityList=CityFactory.getCityList();
-		gv.setAdapter(new GridViewAdapter(getApplicationContext(),cityList,R.layout.cityitem) {
-
-			@Override
-			public void setConvertView(View convertView, Object item) {
-				// TODO Auto-generated method stub
-				CityDate city=(CityDate)item;
-				TextView cityName=(TextView)convertView.findViewById(R.id.cityitemcityname);
-				TextView time=(TextView)convertView.findViewById(R.id.cityitemtime);
-				TextView temperature=(TextView)convertView.findViewById(R.id.cityitemtemperature);
-				cityName.setText(city.getCityName());
-				time.setText(Utils.dateToString(city.getUpdatTime()));
-				String str=Utils.dateToString(city.getUpdatTime());
-				temperature.setText(city.getCurrentTemperature()+"°");
-			}
-		});
-		
-		
-		
 		CityDate city=CityFactory.getCity("hello");
 		viewPager = (ViewPager) findViewById(R.id.viewpager);
 		view1 = new CityViewFactory(city, this).getView();
@@ -68,27 +49,23 @@ public class MainActivity extends Activity {
 		viewList.add(view1);
 		viewList.add(view2);
 		viewList.add(view3);
-		
 		PagerAdapter pagerAdapter = new PagerAdapter(){
 			@Override
 			public boolean isViewFromObject(View arg0, Object arg1) {
 				// TODO Auto-generated method stub
 				return arg0 == arg1;
 			}
-			
 			@Override
 			public int getCount() {
 				// TODO Auto-generated method stub
 				return viewList.size();
 			}
-
 			@Override
 			public void destroyItem(ViewGroup container, int position,
 					Object object) {
 				// TODO Auto-generated method stub
 				container.removeView(viewList.get(position));
 			}
-
 			@Override
 			public Object instantiateItem(ViewGroup container, int position) {
 				// TODO Auto-generated method stub
@@ -96,19 +73,16 @@ public class MainActivity extends Activity {
 
 				return viewList.get(position);
 			}
-			
 		};
 		viewPager.setAdapter(pagerAdapter);
-		
-		
-		View v=(View)findViewById(R.id.topview);
-		v.setVisibility(View.GONE);
 	}
 	public void hideTop(View view){
-		Log.i("点击事件", "执行了hideTop(View view),点击了mainActivity中的按钮");
-		//super.h
-		View v=(View)findViewById(R.id.topview);
-		v.setVisibility(View.VISIBLE);
+//		Log.i("点击事件", "执行了hideTop(View view),点击了mainActivity中的按钮");
+//		View v=(View)findViewById(R.id.topview);
+//		v.setVisibility(View.VISIBLE);
+		Intent intent = new Intent(); 
+	     intent.setClass(this, CityListActivity.class);
+	     this.startActivity(intent);
 	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
