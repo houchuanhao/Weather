@@ -108,46 +108,23 @@ public class CityViewFactory {
 	        gv24.setNumColumns(size); // 设置列数量=列表集合数
 
 	        GridViewAdapter adapter = new GridViewAdapter(activity.getApplicationContext(),
-	                timeStateList);
+	                timeStateList,R.layout.midlist){
+
+						@Override
+						public void setConvertView(View convertView, Object item) {
+							// TODO Auto-generated method stub
+							 	Map ts =(Map) item;
+					            TextView time = (TextView) convertView.findViewById(R.id.time);
+					            TextView weather = (TextView) convertView.findViewById(R.id.weather);
+					            TextView temperature = (TextView) convertView.findViewById(R.id.temperature);
+					           
+					            time.setText(ts.get("time")+"时");
+					            weather.setText(ts.get("weather").toString());
+					            temperature.setText(ts.get("temperature")+"°");
+						}
+	        	
+	        };
 	        gv24.setAdapter(adapter);
 	    }
 	    /**GirdView 数据适配器*/
-	 public class GridViewAdapter extends BaseAdapter {
-	        Context context;
-	        List list;
-	        public GridViewAdapter(Context _context, List _list) {
-	            this.list = _list;
-	            this.context = _context;
-	        }
-
-	        @Override
-	        public int getCount() {
-	            return list.size();
-	        }
-
-	        @Override
-	        public Object getItem(int position) {
-	            return list.get(position);
-	        }
-
-	        @Override
-	        public long getItemId(int position) {
-	            return position;
-	        }
-
-	        @Override
-	        public View getView(int position, View convertView, ViewGroup parent) {
-	            LayoutInflater layoutInflater = LayoutInflater.from(context);
-	            convertView = layoutInflater.inflate(R.layout.midlist, null);
-	            Map ts =(Map) list.get(position);
-	            TextView time = (TextView) convertView.findViewById(R.id.time);
-	            TextView weather = (TextView) convertView.findViewById(R.id.weather);
-	            TextView temperature = (TextView) convertView.findViewById(R.id.temperature);
-	           
-	            time.setText(ts.get("time")+"时");
-	            weather.setText(ts.get("weather").toString());
-	            temperature.setText(ts.get("temperature")+"°");
-	            return convertView;
-	        }
-	    }
 }
