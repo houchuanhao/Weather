@@ -1,7 +1,6 @@
 package com.example.weather;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import android.app.Activity;
 import android.content.Context;
@@ -64,11 +63,6 @@ public class CityViewFactory {
 		setGv7();
 		setGv24();
 	}
-	public void setGv24(){
-		
-		setGridView();
-		
-	}
 	public void setGv7(){
 		String from[]={"day","weather","max","min"};
 		int[] to={R.id.textView11,R.id.textView22,R.id.textView33,R.id.textView44};
@@ -98,15 +92,8 @@ public class CityViewFactory {
 	
 	
 
-	 private void setGridView() {
-		 	List timeStateList=new ArrayList();
-		 	for(int i=0;i<24;i++){
-		 		TimeState ts=new TimeState();
-		 		ts.setT(i);
-		 		ts.setTem(24);
-		 		ts.setWeather("多云");
-		 		timeStateList.add(ts);
-		 	}
+	 private void setGv24() {
+		 	List timeStateList=cityDate.getTimeState24();
 	        int size = timeStateList.size();
 	        int length = 100;
 	        DisplayMetrics dm = new DisplayMetrics();
@@ -130,8 +117,8 @@ public class CityViewFactory {
 	    /**GirdView 数据适配器*/
 	 public class GridViewAdapter extends BaseAdapter {
 	        Context context;
-	        List<TimeState> list;
-	        public GridViewAdapter(Context _context, List<TimeState> _list) {
+	        List list;
+	        public GridViewAdapter(Context _context, List _list) {
 	            this.list = _list;
 	            this.context = _context;
 	        }
@@ -158,37 +145,11 @@ public class CityViewFactory {
 	            TextView time = (TextView) convertView.findViewById(R.id.time);
 	            TextView state = (TextView) convertView.findViewById(R.id.state);
 	            TextView temperature = (TextView) convertView.findViewById(R.id.temperature);
-	            TimeState ts = list.get(position);
-
-	            time.setText(String.valueOf(ts.getT()));
-	            state.setText(ts.getWeather());
-	            temperature.setText(String.valueOf(ts.getTem()));
+	            Map ts =(Map) list.get(position);
+	            time.setText(ts.get("time")+"时");
+	            state.setText(ts.get("weather").toString());
+	            temperature.setText(ts.get("temperature")+"°");
 	            return convertView;
 	        }
 	    }
-
-	 public class TimeState{
-		 int t;
-		 String weather;
-		 int tem;
-		public int getT() {
-			return t;
-		}
-		public void setT(int t) {
-			this.t = t;
-		}
-		public String getWeather() {
-			return weather;
-		}
-		public void setWeather(String weather) {
-			this.weather = weather;
-		}
-		public int getTem() {
-			return tem;
-		}
-		public void setTem(int tem) {
-			this.tem = tem;
-		}
-		 
-	 }
 }

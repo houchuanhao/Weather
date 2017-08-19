@@ -26,12 +26,12 @@ public class CityFactory {
 			weekState7.add(map);
 		}
 		
-		timeState24=new ArrayList<Map<String,String>>();
+		timeState24=new ArrayList<Map>();
 		for(int i=0;i<24;i++){
-			Map<String,String> map=new HashMap<String,String>();
-			map.put("time",i+"Ê±");
+			Map map=new HashMap();
+			map.put("time",i);
 			map.put("weather", "¶àÔÆ×ªÇç");
-			map.put("temperature", "36");
+			map.put("temperature", 36);
 			timeState24.add(map);
 		}
 		city.setWeekState7(weekState7);
