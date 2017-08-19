@@ -27,6 +27,7 @@ import android.widget.TextView;
 import com.example.weather.MyDefind.CityDate;
 import com.example.weather.MyDefind.CityFactory;
 import com.example.weather.MyDefind.MyGridView;
+import com.example.weather.MyDefind.Utils;
 
 public class MainActivity extends Activity {
 	private GridView gv;
@@ -39,7 +40,21 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 		gv=(GridView)findViewById(R.id.cityList);
 		List cityList=CityFactory.getCityList();
-		
+		gv.setAdapter(new GridViewAdapter(getApplicationContext(),cityList,R.layout.cityitem) {
+
+			@Override
+			public void setConvertView(View convertView, Object item) {
+				// TODO Auto-generated method stub
+				CityDate city=(CityDate)item;
+				TextView cityName=(TextView)convertView.findViewById(R.id.cityitemcityname);
+				TextView time=(TextView)convertView.findViewById(R.id.cityitemtime);
+				TextView temperature=(TextView)convertView.findViewById(R.id.cityitemtemperature);
+				cityName.setText(city.getCityName());
+				time.setText(Utils.dateToString(city.getUpdatTime()));
+				String str=Utils.dateToString(city.getUpdatTime());
+				temperature.setText(city.getCurrentTemperature()+"бу");
+			}
+		});
 		
 		
 		
@@ -52,6 +67,7 @@ public class MainActivity extends Activity {
 		viewList.add(view1);
 		viewList.add(view2);
 		viewList.add(view3);
+		
 		PagerAdapter pagerAdapter = new PagerAdapter(){
 			@Override
 			public boolean isViewFromObject(View arg0, Object arg1) {

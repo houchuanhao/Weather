@@ -106,7 +106,6 @@ public class CityViewFactory {
 	        gv24.setHorizontalSpacing(5); // 设置列表项水平间距
 	        gv24.setStretchMode(GridView.NO_STRETCH);
 	        gv24.setNumColumns(size); // 设置列数量=列表集合数
-
 	        GridViewAdapter adapter = new GridViewAdapter(activity.getApplicationContext(),
 	                timeStateList,R.layout.midlist){
 

@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@drawable/cityitem" >
+
 <!-- 2 -->
 <!-- 3 -->
 <!-- 1 -->
@@ -13,7 +15,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginLeft="14dp"
-        android:layout_marginTop="14dp"
+        android:layout_marginTop="20dp"
         android:text="时间" />
 
     <TextView

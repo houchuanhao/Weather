@@ -2,16 +2,11 @@ package com.example.weather;
 
 import java.util.List;
 
-import com.example.weather.MyDefind.CityDate;
-import com.example.weather.MyDefind.Utils;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.TextView;
-
 public abstract class GridViewAdapter extends BaseAdapter implements GridViewAdapterInterface{
 
     Context context;
