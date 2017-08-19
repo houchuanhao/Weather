@@ -21,6 +21,7 @@ public class CityListActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_city_list);
 		setView();
+		
 	}
 
 	@Override

@@ -5,6 +5,7 @@ import java.util.*;
 import android.app.Activity;
 import android.content.Context;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +31,20 @@ public class CityViewFactory {
 		this.activity=activity;
 		view= activity.getLayoutInflater().inflate(R.layout.weatherlayout, null);
 		 //setContent();
+	}
+	public static List<View> getViewList(List<CityDate> cityList,Activity activity){
+		if(cityList==null){
+			//Log.w
+			Log.w("CityViewFactory.getViewList:","²ÎÊýcityListÎª¿Õ");
+			return new ArrayList();
+		}
+		Iterator iteator=cityList.iterator();
+		List<View> viewList=new ArrayList<View>();
+		while(iteator.hasNext()){
+			View view=new CityViewFactory((CityDate)iteator.next(), activity).getView();
+			viewList.add(view);
+		}
+		return viewList;
 	}
 	public View getView(){
 		 int a=3;

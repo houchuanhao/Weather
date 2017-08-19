@@ -25,30 +25,37 @@ import android.widget.ListAdapter;
 import android.widget.ScrollView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
-
 import com.example.weather.MyDefind.CityDate;
 import com.example.weather.MyDefind.CityFactory;
 import com.example.weather.MyDefind.MyGridView;
 import com.example.weather.MyDefind.Utils;
-
 public class MainActivity extends Activity {
-	private GridView gv;
-	private View view1, view2, view3;
-	private List<View> viewList;// view数组
-	private ViewPager viewPager; // 对应的viewPager
+	private List<CityDate> cityList;
+	private List<View> viewList;
+	private ViewPager viewPager;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		CityDate city=CityFactory.getCity("hello");
+		cityList=CityFactory.getCityList();
+		updateView(cityList);
+	}
+	public void hideTop(View view){
+//		Log.i("点击事件", "执行了hideTop(View view),点击了mainActivity中的按钮");
+//		View v=(View)findViewById(R.id.topview);
+//		v.setVisibility(View.VISIBLE);
+		Intent intent = new Intent(this, CityListActivity.class); 
+	     this.startActivity(intent);
+	}
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.main, menu);
+		return true;
+	}
+	public void updateView(List _cityList){
+		viewList=CityViewFactory.getViewList(_cityList, this);
 		viewPager = (ViewPager) findViewById(R.id.viewpager);
-		view1 = new CityViewFactory(city, this).getView();
-		view2 = new CityViewFactory(city, this).getView();
-		view3 = new CityViewFactory(city, this).getView();
-		viewList = new ArrayList<View>();// 将要分页显示的View装入数组中
-		viewList.add(view1);
-		viewList.add(view2);
-		viewList.add(view3);
 		PagerAdapter pagerAdapter = new PagerAdapter(){
 			@Override
 			public boolean isViewFromObject(View arg0, Object arg1) {
@@ -70,24 +77,9 @@ public class MainActivity extends Activity {
 			public Object instantiateItem(ViewGroup container, int position) {
 				// TODO Auto-generated method stub
 				container.addView(viewList.get(position));
-
 				return viewList.get(position);
 			}
 		};
 		viewPager.setAdapter(pagerAdapter);
-	}
-	public void hideTop(View view){
-//		Log.i("点击事件", "执行了hideTop(View view),点击了mainActivity中的按钮");
-//		View v=(View)findViewById(R.id.topview);
-//		v.setVisibility(View.VISIBLE);
-		Intent intent = new Intent(); 
-	     intent.setClass(this, CityListActivity.class);
-	     this.startActivity(intent);
-	}
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
 	}
 }
