@@ -9,9 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
-
-import com.example.weather.MainActivity.GridViewAdapter;
-import com.example.weather.MainActivity.TimeState;
 import com.example.weather.MyDefind.CityDate;
 
 public class CityViewFactory {
@@ -143,11 +140,11 @@ public class CityViewFactory {
 	            LayoutInflater layoutInflater = LayoutInflater.from(context);
 	            convertView = layoutInflater.inflate(R.layout.midlist, null);
 	            TextView time = (TextView) convertView.findViewById(R.id.time);
-	            TextView state = (TextView) convertView.findViewById(R.id.state);
+	            TextView weather = (TextView) convertView.findViewById(R.id.weather);
 	            TextView temperature = (TextView) convertView.findViewById(R.id.temperature);
 	            Map ts =(Map) list.get(position);
 	            time.setText(ts.get("time")+"Ê±");
-	            state.setText(ts.get("weather").toString());
+	            weather.setText(ts.get("weather").toString());
 	            temperature.setText(ts.get("temperature")+"¡ã");
 	            return convertView;
 	        }
