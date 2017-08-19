@@ -26,18 +26,14 @@ public class CityViewFactory {
 	GridView gv24;//24小时
 	GridView gv7;//一周
 	CityViewFactory(CityDate cityDate,Activity activity){
-		
 		this.cityDate=cityDate;
 		this.activity=activity;
-		
 		view= activity.getLayoutInflater().inflate(R.layout.weatherlayout, null);
 		 //setContent();
 	}
 	public View getView(){
 		 int a=3;
 		 cityName=(TextView)view.findViewById(R.id.cityName);
-
-		
 		 currentWeather=(TextView)view.findViewById(R.id.currentWeather);
 		 currentTemperature=(TextView)view.findViewById(R.id.currentTemperature);
 		 weekday=(TextView)view.findViewById(R.id.weekday);//今天星期几
@@ -46,12 +42,10 @@ public class CityViewFactory {
 		 hsv=(HorizontalScrollView)view.findViewById(R.id.hsv);
 		 gv24=(GridView)view.findViewById(R.id.gv24);
 		 gv7=(GridView)view.findViewById(R.id.gv7);
-		 
 		 setContent();
 		 return view;
 	}
 	public void setContent(){
-		
 		cityName.setText(cityDate.getCityName());
 		currentWeather.setText(cityDate.getCurrentWeather());
 		currentTemperature.setText(cityDate.getCurrentTemperature()+"°");
@@ -68,27 +62,6 @@ public class CityViewFactory {
 	//下面这条语句出了bug
 		gv7.setAdapter((ListAdapter) adapter);
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
 	 private void setGv24() {
 		 	List timeStateList=cityDate.getTimeState24();
 	        int size = timeStateList.size();

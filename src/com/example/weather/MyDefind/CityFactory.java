@@ -58,4 +58,7 @@ public class CityFactory {
 		return city;
 		
 	}
+	void hidTop(){
+		
+	}
 }

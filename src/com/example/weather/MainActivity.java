@@ -11,6 +11,7 @@ import android.content.Context;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
@@ -98,6 +99,16 @@ public class MainActivity extends Activity {
 			
 		};
 		viewPager.setAdapter(pagerAdapter);
+		
+		
+		View v=(View)findViewById(R.id.topview);
+		v.setVisibility(View.GONE);
+	}
+	public void hideTop(View view){
+		Log.i("点击事件", "执行了hideTop(View view),点击了mainActivity中的按钮");
+		//super.h
+		View v=(View)findViewById(R.id.topview);
+		v.setVisibility(View.VISIBLE);
 	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
