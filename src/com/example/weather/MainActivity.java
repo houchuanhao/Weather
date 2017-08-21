@@ -39,6 +39,9 @@ public class MainActivity extends Activity implements ActInterface{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		CityDao.setContext(this);
+		City city;
+		city=new City();
+		city.analysis();
 		//cityList=CityFactory.getCityList();
 		setView(cityList);;
 		updateView();

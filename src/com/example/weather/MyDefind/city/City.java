@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import com.example.weather.MyDefind.HttpTask;
+
 import android.database.Cursor;
 import android.util.Log;
 
@@ -133,9 +138,36 @@ public class City implements BasicDao{
 	@Override
 	public void analysis() {
 		// TODO Auto-generated method stub
+		new HttpTask() {
+			
+			@Override
+			public void success() {
+				// TODO Auto-generated method stub
+				String str=super.getResponse();
+
+				
+					try {	
+						JSONObject json1 = new JSONObject(str);
+						JSONObject date;
+						date = json1.getJSONObject("date");
+						String cityName=(String) date.get("cityName");
+						Log.i("testjson",cityName);
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+			
+			}
+			
+			@Override
+			public void faild() {
+				// TODO Auto-generated method stub
+				
+			}
+		}.execute("http://api.yytianqi.com/weatherhours?city=CH010100&key=k6vatqjq53wt86n1");
 		currentWeather="解析之后的json";
 	}
-
+	
 	
 
 }
