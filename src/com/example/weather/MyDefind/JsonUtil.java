@@ -1,8 +1,10 @@
 package com.example.weather.MyDefind;
 
+import com.example.weather.MyDefind.city.City;
+
 
 public class JsonUtil {
-	public static CityDate getCityDate(String response){
+	public static City getCityDate(String response){
 		return null;
 		
 	}

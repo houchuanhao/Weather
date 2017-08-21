@@ -2,9 +2,9 @@ package com.example.weather;
 
 import java.util.List;
 
-import com.example.weather.MyDefind.CityDate;
-import com.example.weather.MyDefind.CityFactory;
 import com.example.weather.MyDefind.Utils;
+import com.example.weather.MyDefind.city.City;
+import com.example.weather.MyDefind.city.CityFactory;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -40,7 +40,7 @@ public class CityListActivity extends Activity {
 			@Override
 			public void setConvertView(View convertView, Object item) {
 				// TODO Auto-generated method stub
-				CityDate city=(CityDate)item;
+				City city=(City)item;
 				TextView cityName=(TextView)convertView.findViewById(R.id.cityitemcityname);
 				TextView time=(TextView)convertView.findViewById(R.id.cityitemtime);
 				TextView temperature=(TextView)convertView.findViewById(R.id.cityitemtemperature);

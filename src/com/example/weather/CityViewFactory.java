@@ -10,12 +10,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
-import com.example.weather.MyDefind.CityDate;
+
+import com.example.weather.MyDefind.city.City;
 
 public class CityViewFactory {
 	//这里缺个适配器
 	Activity activity;
-	CityDate cityDate;
+	City cityDate;
 	View view;
 	TextView cityName;
 	TextView currentWeather;
@@ -26,13 +27,13 @@ public class CityViewFactory {
 	HorizontalScrollView hsv;
 	GridView gv24;//24小时
 	GridView gv7;//一周
-	CityViewFactory(CityDate cityDate,Activity activity){
+	CityViewFactory(City cityDate,Activity activity){
 		this.cityDate=cityDate;
 		this.activity=activity;
 		view= activity.getLayoutInflater().inflate(R.layout.weatherlayout, null);
 		 //setContent();
 	}
-	public static List<View> getViewList(List<CityDate> cityList,Activity activity){
+	public static List<View> getViewList(List<City> cityList,Activity activity){
 		if(cityList==null){
 			//Log.w
 			Log.w("CityViewFactory.getViewList:","参数cityList为空");
@@ -41,7 +42,7 @@ public class CityViewFactory {
 		Iterator iteator=cityList.iterator();
 		List<View> viewList=new ArrayList<View>();
 		while(iteator.hasNext()){
-			View view=new CityViewFactory((CityDate)iteator.next(), activity).getView();
+			View view=new CityViewFactory((City)iteator.next(), activity).getView();
 			viewList.add(view);
 		}
 		return viewList;

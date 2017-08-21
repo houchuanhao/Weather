@@ -2,11 +2,13 @@ package com.example.weather.MyDefind;
 
 import java.util.List;
 
+import com.example.weather.MyDefind.city.City;
+
 import android.view.View;
 
 public  class HandlePageView implements ViewInterface{
 	View view;
-	CityDate cityDate;
+	City cityDate;
 	@Override
 	public void sendRequest() {
 		// TODO Auto-generated method stub

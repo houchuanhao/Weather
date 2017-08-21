@@ -1,4 +1,4 @@
-package com.example.weather.MyDefind;
+package com.example.weather.MyDefind.city;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -6,8 +6,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
 public class CityFactory {
-	public static List<CityDate> getCityList(){
+	public static List<City> getCityList(){
 		List cityList=new ArrayList();
 		for(int i=0;i<=100;i++){
 			cityList.add(getCity(""));
@@ -21,12 +22,13 @@ public class CityFactory {
 //		}
 //	}
 	
-	public  static CityDate getCity(String response){
+	public  static City getCity(String response){
 		List weekState7;
 		List timeState24;
-		CityDate city=new CityDate();
+		City city=new City();
 		city.setUpdatTime(new Date());
-		city.setCity(1);
+		//city.setUpdatTime(new Date());
+		city.setCityNumber(1);
 		city.setCityName("ÉòÑô");
 		city.setCurrentTemperature(30);
 		city.setCurrentWeather("¶àÔÆ");

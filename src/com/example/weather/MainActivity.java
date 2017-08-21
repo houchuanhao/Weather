@@ -25,12 +25,12 @@ import android.widget.ListAdapter;
 import android.widget.ScrollView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
-import com.example.weather.MyDefind.CityDate;
-import com.example.weather.MyDefind.CityFactory;
 import com.example.weather.MyDefind.MyGridView;
 import com.example.weather.MyDefind.Utils;
+import com.example.weather.MyDefind.city.City;
+import com.example.weather.MyDefind.city.CityFactory;
 public class MainActivity extends Activity {
-	private List<CityDate> cityList;
+	private List<City> cityList;
 	private List<View> viewList;
 	private ViewPager viewPager;
 	@Override
