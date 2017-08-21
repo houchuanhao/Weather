@@ -57,5 +57,5 @@ public abstract class GridViewAdapter extends BaseAdapter implements GridViewAda
 }
 
 interface 	GridViewAdapterInterface{
-	void setConvertView(View convertView,Object item);
+	void setConvertView(View itemView,Object item);
 }

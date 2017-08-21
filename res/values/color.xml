@@ -6,4 +6,5 @@
   <drawable name="lightred">#90FF0000</drawable>
   <drawable name="lightgray">#90505050</drawable>
   <drawable name="cityitem">#454545</drawable>
+  <drawable name="red">#80FF0000</drawable>
 </resources>

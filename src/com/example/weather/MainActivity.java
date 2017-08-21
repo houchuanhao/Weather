@@ -28,17 +28,20 @@ import android.widget.TextView;
 import com.example.weather.MyDefind.MyGridView;
 import com.example.weather.MyDefind.Utils;
 import com.example.weather.MyDefind.city.City;
+import com.example.weather.MyDefind.city.CityDao;
 import com.example.weather.MyDefind.city.CityFactory;
-public class MainActivity extends Activity {
-	private List<City> cityList;
+public class MainActivity extends Activity implements ActInterface{
+	private List<City> cityList=null;
 	private List<View> viewList;
 	private ViewPager viewPager;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		cityList=CityFactory.getCityList();
-		updateView(cityList);
+		CityDao.setContext(this);
+		//cityList=CityFactory.getCityList();
+		setView(cityList);;
+		updateView();
 	}
 	public void hideTop(View view){
 //		Log.i("点击事件", "执行了hideTop(View view),点击了mainActivity中的按钮");
@@ -53,7 +56,17 @@ public class MainActivity extends Activity {
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
-	public void updateView(List _cityList){
+	@Override
+	public void setView(List _cityList) {  //与数据库中的数据一致
+		// TODO Auto-generated method stub
+		if(_cityList==null){
+			_cityList=City.getAll();
+			this.cityList=_cityList;
+		}
+		if(_cityList==null||cityList.size()==0){
+			Log.w("数据库没有值","MainActivity.setView()");
+			return;
+		}
 		viewList=CityViewFactory.getViewList(_cityList, this);
 		viewPager = (ViewPager) findViewById(R.id.viewpager);
 		PagerAdapter pagerAdapter = new PagerAdapter(){
@@ -82,4 +95,12 @@ public class MainActivity extends Activity {
 		};
 		viewPager.setAdapter(pagerAdapter);
 	}
+	@Override
+	public void updateView() { //重新请求数据，并更新数据库，也更新View
+		// TODO Auto-generated method stub
+		setView(cityList);
+	}
+
+
+
 }

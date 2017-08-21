@@ -1,5 +1,6 @@
 package com.example.weather.MyDefind.city;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -7,7 +8,7 @@ import android.database.Cursor;
 import android.util.Log;
 
 public class City implements BasicDao{
-	private static CityDao cityDao;
+	private static CityDao cityDao=new CityDao();
 	int id;//在sqllit数据库中的id
 	int cityNumber; //http请求中对应的编码
 	String CityName;
@@ -20,12 +21,12 @@ public class City implements BasicDao{
 	List weekState7;//一周天气
 	List otherAttribute;//其他属性，比如日出，日落。。
 	String json="json串";//该city的json串
-	public static void City(){
+	public  City(){
 		if(CityDao.activity==null){
 			Log.e("CityDao的静态成员没有初始化","在创建CityDao对象前必须执行CityDao.setContext(Context activity)函数");
 
 		}
-		cityDao=new CityDao();
+		//cityDao=new CityDao();
 	}
 	public int getId() {
 		return id;
@@ -110,19 +111,24 @@ public class City implements BasicDao{
 		// TODO Auto-generated method stub
 		
 	}
-	@Override
-	public List getAll() {
+	public static void remove(int _id){
+		cityDao.delete(_id);
+	}
+	public static List getAll() {
+		List cityList=new ArrayList();
+
 		Cursor cursor=cityDao.query();
 		while(cursor.moveToNext()) {
 		    //光标移动成功
-
-			id=Integer.parseInt(cursor.getString(cursor.getColumnIndex("_id")));
-			json=cursor.getString(cursor.getColumnIndex("json"));
-			analysis();
+			City city=CityFactory.getCity("");
+			city.id=Integer.parseInt(cursor.getString(cursor.getColumnIndex("_id")));
+			city.json=cursor.getString(cursor.getColumnIndex("json"));
+			city.analysis();
+			cityList.add(city);
 		   //把数据取出
 		}
 		// TODO Auto-generated method stub
-		return null;
+		return cityList;
 	}
 	@Override
 	public void analysis() {

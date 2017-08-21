@@ -55,11 +55,12 @@ public class CityDao extends SQLiteOpenHelper {
 		String array[] = {String.valueOf(city.getId())};
 		db.update(tablename, cvs, "_id=",array);
 	}
-	public void delete(int id){
+	public void delete(int _id){
 //		db.execSQL("delete from person where _id=?", args);
 		db = this.getWritableDatabase();
-		String array[] = {String.valueOf(id)};
-		db.delete(tablename, "_id=", array);
+		String array[] = {String.valueOf(_id)};
+		db.delete(tablename, "_id=?", array);
+		int _$abc;
 	}
 	public Cursor query(){
 		db = this.getWritableDatabase();
