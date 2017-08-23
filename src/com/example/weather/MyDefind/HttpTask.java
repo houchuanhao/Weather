@@ -58,6 +58,9 @@ public abstract class HttpTask extends AsyncTask<String, String, Boolean> implem
 	public void setResponse(String response) {
 		this.response = response;
 	}
+	public void faild(){
+		
+	}
 }
 
 interface SuccessFaild{

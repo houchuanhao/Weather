@@ -1,4 +1,4 @@
-package com.example.weather;
+package com.example.weather.MyDefind;
 
 import java.util.List;
 
@@ -13,6 +13,9 @@ public abstract class GridViewAdapter extends BaseAdapter implements GridViewAda
     List list;
     int itemLayout;
     public GridViewAdapter(Context _context, List _list,int _itemLayout) {
+    	//_context: Activity.getApplicationContext
+    	//_list:要用来适配的数据
+    	//_itemLayout:单行对应的xml文件，如R.layout.item
         this.list = _list;
         this.context = _context;
         this.itemLayout=_itemLayout;

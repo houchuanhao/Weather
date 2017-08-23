@@ -3,6 +3,7 @@ package com.example.weather;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.weather.MyDefind.GridViewAdapter;
 import com.example.weather.MyDefind.city.City;
 import com.example.weather.MyDefind.city.CityDao;
 import com.example.weather.MyDefind.city.CityFactory;
@@ -33,7 +34,7 @@ public class TestActivity extends Activity {
 	}
 	public void add(View v){
 		City city=CityFactory.getCity("");
-		city.setJson(json.getText().toString());
+		city.setWeatherhours(json.getText().toString());
 		city.save();
 	}
 	public void delete(View v){
@@ -66,7 +67,7 @@ public class TestActivity extends Activity {
 			TextView id=(TextView)itemView.findViewById(R.id.cityitemcityname);
 			TextView json=(TextView)itemView.findViewById(R.id.cityitemtemperature);
 			id.setText(String.valueOf(city.getId()));
-			json.setText(city.getJson());
+			json.setText(city.getWeatherhours());
 		}
 
 		

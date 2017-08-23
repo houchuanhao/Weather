@@ -28,7 +28,7 @@ public class CityFactory {
 		City city=new City();
 		city.setUpdatTime(new Date());
 		//city.setUpdatTime(new Date());
-		city.setCityNumber(1);
+		city.setCityNumber("222");
 		city.setCityName("…Ú—Ù");
 		city.setCurrentTemperature(30);
 		city.setCurrentWeather("∂‡‘∆");

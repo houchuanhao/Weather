@@ -1,5 +1,9 @@
 package com.example.weather.MyDefind.city;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -20,6 +24,18 @@ public class CityDao extends SQLiteOpenHelper {
 		
 		// TODO Auto-generated constructor stub
 	}
+	boolean exist(String cityNumber){
+		
+		List list=getAll();
+		Iterator iterator=list.iterator();
+		while(iterator.hasNext()){
+			City city=(City)iterator.next();
+			if(city.getCityNumber()!=null&&city.getCityNumber().equals(cityNumber))
+				return true;
+		}
+		return false;
+	}
+
 	public CityDao(){
 
 		this(activity,dbname,null,1);
@@ -27,7 +43,7 @@ public class CityDao extends SQLiteOpenHelper {
 	}
 	@Override
 	public void onCreate(SQLiteDatabase db) {
-		String sql = "create table city (_id Integer primary key autoincrement, json text)";
+		String sql = "create table city (_id Integer primary key autoincrement, citynumber text,forecast7d text,weatherhours text,observ text)";
 		db.execSQL(sql);
 	}
 
@@ -44,16 +60,21 @@ public class CityDao extends SQLiteOpenHelper {
 //		db.execSQL(sql, args);
 		db = this.getWritableDatabase();
 		ContentValues cvs = new ContentValues();
-		cvs.put("json", city.getJson());
+		cvs.put("citynumber", city.getCityNumber());
+		cvs.put("forecast7d", city.getForecast7d());
+		cvs.put("weatherhours", city.getWeatherhours());
+		cvs.put("observ", city.getObserv());
 		db.insert(tablename, null, cvs);
 	}
 	public void update(City city){
-//		db.execSQL("update person set name=?, age=?, sex=? where _id=?", args);
-		db = this.getWritableDatabase();
+		//db.execSQL("update person set name=?, age=?, sex=? where _id=?", args);
+		//db = this.getWritableDatabase();
 		ContentValues cvs = new ContentValues();
-		cvs.put("json",city.getJson());
-		String array[] = {String.valueOf(city.getId())};
-		db.update(tablename, cvs, "_id=",array);
+		cvs.put("forecast7d",city.getForecast7d());
+		cvs.put("weatherhours",city.getWeatherhours());
+		cvs.put("observ",city.getObserv());
+		String array[] = {city.getCityNumber()};
+		db.update(tablename, cvs, "citynumber=?",array);
 	}
 	public void delete(int _id){
 //		db.execSQL("delete from person where _id=?", args);
@@ -67,11 +88,20 @@ public class CityDao extends SQLiteOpenHelper {
 		return db.query(tablename, null, null, null, null, null, null);
 //		return db.rawQuery("select * from person", null);
 	}
-	
-	
-	
-	
-	
-	
-	
+	public List getAll(){
+		List cityList=new ArrayList();
+		Cursor cursor=query();
+		while(cursor.moveToNext()) {
+		    //光标移动成功
+			City city=new City();
+			city.id=Integer.parseInt(cursor.getString(cursor.getColumnIndex("_id")));
+			city.forecast7d=cursor.getString(cursor.getColumnIndex("forecast7d"));
+			city.weatherhours=cursor.getString(cursor.getColumnIndex("weatherhours"));
+			city.observ=cursor.getString(cursor.getColumnIndex("observ"));
+			city.cityNumber=cursor.getString(cursor.getColumnIndex("citynumber"));
+			city.analysis();
+			cityList.add(city);
+			}
+		return cityList;
+		}
 }

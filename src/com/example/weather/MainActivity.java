@@ -2,8 +2,11 @@ package com.example.weather;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+
+import org.apache.http.client.methods.HttpTrace;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -25,25 +28,28 @@ import android.widget.ListAdapter;
 import android.widget.ScrollView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+
+import com.example.weather.MyDefind.HttpTask;
 import com.example.weather.MyDefind.MyGridView;
 import com.example.weather.MyDefind.Utils;
 import com.example.weather.MyDefind.city.City;
 import com.example.weather.MyDefind.city.CityDao;
 import com.example.weather.MyDefind.city.CityFactory;
+import com.example.weather.MyDefind.city.CityViewFactory;
 public class MainActivity extends Activity implements ActInterface{
+	int updateViewI=0;
 	private List<City> cityList=null;
 	private List<View> viewList;
+	private City[] cityArray;
 	private ViewPager viewPager;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		CityDao.setContext(this);
-		City city;
-		city=new City();
-		city.analysis();
+		cityList=City.getAll();
 		//cityList=CityFactory.getCityList();
-		setView(cityList);;
+		setView(cityList);
 		updateView();
 	}
 	public void hideTop(View view){
@@ -60,19 +66,20 @@ public class MainActivity extends Activity implements ActInterface{
 		return true;
 	}
 	@Override
-	public void setView(List _cityList) {  //与数据库中的数据一致
+	public void setView(List _cityList) {  //
 		// TODO Auto-generated method stub
 		if(_cityList==null){
 			_cityList=City.getAll();
-			this.cityList=_cityList;
 		}
 		if(_cityList==null||cityList.size()==0){
 			Log.w("数据库没有值","MainActivity.setView()");
 			return;
 		}
+		this.cityList=_cityList;
 		viewList=CityViewFactory.getViewList(_cityList, this);
 		viewPager = (ViewPager) findViewById(R.id.viewpager);
 		PagerAdapter pagerAdapter = new PagerAdapter(){
+			
 			@Override
 			public boolean isViewFromObject(View arg0, Object arg1) {
 				// TODO Auto-generated method stub
@@ -95,15 +102,81 @@ public class MainActivity extends Activity implements ActInterface{
 				container.addView(viewList.get(position));
 				return viewList.get(position);
 			}
+			
 		};
 		viewPager.setAdapter(pagerAdapter);
+		//viewPager.set
+	}
+	public void setViewByArray(){
+		List _cityList=new ArrayList();
+		for(int i=0;i<cityArray.length;i++){
+			_cityList.add(cityArray[i]);
+		}
+		setView(_cityList);
 	}
 	@Override
 	public void updateView() { //重新请求数据，并更新数据库，也更新View
 		// TODO Auto-generated method stub
-		setView(cityList);
+		updateViewI=0;
+		int num=cityList.size();
+		cityArray=new City[num];
+		Iterator iterator=cityList.iterator();
+		for(int i=0;i<num;i++){
+			cityArray[i]=cityList.get(i);
+		}
+		for( updateViewI=0;updateViewI<num;updateViewI++){
+			String cityNumber=cityArray[updateViewI].getCityNumber();
+			new HttpTask(){
+				int now=updateViewI;
+				@Override
+				public void success() {
+					// TODO Auto-generated method stub
+					int n=viewPager.getCurrentItem();
+					cityArray[now].setForecast7d(super.getResponse());
+					cityArray[now].save();
+					setViewByArray();
+					viewPager.setCurrentItem(n);
+				}
+			}.execute("http://api.yytianqi.com/forecast7d?city="+cityNumber+"&key=k6vatqjq53wt86n1");
+			new HttpTask(){
+				int now=updateViewI;
+				@Override
+				public void success() {
+					int n=viewPager.getCurrentItem();
+					cityArray[now].setObserv(super.getResponse());
+					cityArray[now].save();
+					setViewByArray();
+					viewPager.setCurrentItem(n);
+					// TODO Auto-generated method stub
+					
+				}
+				
+			}.execute("http://api.yytianqi.com/observe?city="+cityNumber+"&key=k6vatqjq53wt86n1");
+			new HttpTask(){
+				int now=updateViewI;
+				@Override
+				public void success() {
+					int n=viewPager.getCurrentItem();
+					cityArray[now].setWeatherhours(super.getResponse());
+					cityArray[now].save();
+					setViewByArray();
+					viewPager.setCurrentItem(n);
+					// TODO Auto-generated method stub
+				}
+				
+			}.execute("http://api.yytianqi.com/weatherhours?city="+cityNumber+"&key=k6vatqjq53wt86n1");
+			
+		}
+		//setView(cityList);
+	}
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		setView(City.getAll());
+		super.onResume();
 	}
 
+	
 
 
 }

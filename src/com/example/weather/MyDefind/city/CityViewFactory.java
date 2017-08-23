@@ -1,4 +1,4 @@
-package com.example.weather;
+package com.example.weather.MyDefind.city;
 
 import java.util.*;
 
@@ -11,7 +11,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
 
-import com.example.weather.MyDefind.city.City;
+import com.example.weather.R;
+import com.example.weather.MyDefind.GridViewAdapter;
+import com.example.weather.R.id;
+import com.example.weather.R.layout;
 
 public class CityViewFactory {
 	//’‚¿Ô»±∏ˆ  ≈‰∆˜

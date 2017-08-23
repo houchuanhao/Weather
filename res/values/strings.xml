@@ -6,5 +6,6 @@
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_city_list">CityListActivity</string>
     <string name="title_activity_test">TestActivity</string>
+    <string name="title_activity_addcity">AddcityActivity</string>
 
 </resources>
